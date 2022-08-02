@@ -33,9 +33,10 @@ class Validate:
         try:
             datetime.strptime(date_string, '%Y-%m-%d')
             return True
-        except:
+        except Exception as e:
             print(
-                f'Incorrect date format in input. It should be YYYY-MM-DD, got {date_string}')
+                f'It should be YYYY-MM-DD, got {date_string}. {e}')
+
             return False
 
     def vesting_events(self, vesting_event, awarded_date, quantity):

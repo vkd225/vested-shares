@@ -29,8 +29,8 @@ class File:
             csv_reader = csv.reader(csv_file, delimiter=',')
             return csv_reader, csv_file
 
-        except:
-            raise ValueError(f'{filename} file not found')
+        except Exception as e:
+            print (f'File not found. {e}')
 
     def write_data_to_csv(self, data):
         '''

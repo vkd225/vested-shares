@@ -93,13 +93,13 @@ class TestVestedShare(unittest.TestCase):
 
     def test_invalid_filename(self):
         '''
-        Test error when precision is more than the outerbound i.e. 6
+        Test when the file is not found.
         '''
 
         filename = 'invalid_filename.csv'
         target_date = '2021-01-01'
 
-        self.assertRaises(ValueError, VestingProgram, filename, target_date, 0)
+        self.assertRaises(TypeError, VestingProgram, filename, target_date, 0)
 
     def test_with_spaces_and_empty_lines(self):
         '''
