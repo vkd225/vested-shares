@@ -27,4 +27,4 @@ print('vesting_events: ', Validate.vesting_events.__doc__)
 
 print ('---- Class: DefaultVestedShare----')
 print(DefaultVestedShare.__doc__)
-print('get_values: ', DefaultVestedShare.get_values.__doc__)
+print('set_default_values: ', DefaultVestedShare.set_default_values.__doc__)

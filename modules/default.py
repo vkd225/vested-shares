@@ -3,7 +3,7 @@ class DefaultVestedShare:
     A default vested share class for an employee
     '''
 
-    def get_values(self, employee_id, name, award_id):
+    def set_default_values(self, employee_id, name, award_id):
         '''
         Get default values for an employee's vested share.
 

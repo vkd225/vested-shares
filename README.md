@@ -41,7 +41,6 @@ I have also added a few test cases to to test different functions and inputs of 
 - run `./doc_strings.py`
 
 
-
 ## Sub modules
 I have created 3 sub modules: helper, validator and default
 
@@ -60,4 +59,15 @@ I have created 3 sub modules: helper, validator and default
 
 ### default module
 - Generates default values of vested shares.
+
+## Assumptions
+List of some of the assumptions that I have made to solve the give problem.
+- Assumed that the total vested shares cannot be negative. Hence, if the toatal is negative, it is going to return 0.
+- Assumed that the employee_id is going to be true in the input csv i.e. employee_id is case sensitive.
+- Assumed that the award_id is going to be true in the input csv i.e. award_id is case sensitive.
+    - Different cases (lowercase or uppercase) for employee_id and award_id means multiple input.
+- Name of the Employee encountered first is set and if the name is diffrent in different row, that is disregarded.
+- Assumed that the only valid date format is `YYYY-MM-DD`.
+
+
 

@@ -9,6 +9,7 @@ from modules.validator import Validate
 from modules.default import DefaultVestedShare
 from modules.helper import File, TotalShare, PreciseNumber
 
+
 class VestingProgram:
     def __init__(self, filename, target_date, precision):
         self.filename = filename
@@ -24,7 +25,6 @@ class VestingProgram:
 
         f = File()
         self.vesting_data, self.file = f.get_csv_data(self.filename)
-
 
     def parse_calculated_vested_shares(self, vested_shares):
         sorted_shares = sorted(vested_shares.keys())
@@ -44,7 +44,6 @@ class VestingProgram:
 
         return vested_share_data
 
-
     def main(self):
         # Instantiate helper classes
         f = File()
@@ -57,6 +56,9 @@ class VestingProgram:
             if not (row):
                 # skip empty lines
                 continue
+
+            if len(row) != 6:
+                return (f'Invalid input row at line {i+1}. Insufficient input.')
 
             vesting_event = row[0].strip()
             employee_id = row[1].strip()
@@ -72,12 +74,11 @@ class VestingProgram:
             if row_valid:
                 if (employee_id, award_id) not in vested_shares:
                     default_share = DefaultVestedShare()
-                    vested_shares[(employee_id, award_id)] = default_share.get_values(
-                        employee_id, name, award_id)
+                    vested_shares[(employee_id, award_id)] = default_share.set_default_values(employee_id, name, award_id)
 
                 if awarded_date <= self.target_date:
-                    current_total = vested_shares[(
-                        employee_id, award_id)]['quantity']
+                    current_total = vested_shares[(employee_id, award_id)]['quantity']
+
                     vested_shares[(employee_id, award_id)]['quantity'] = total_share.calulate_vested_shares(
                         vesting_event, current_total, precise_number.get_precise_number(quantity, self.precision))
 
@@ -115,7 +116,7 @@ if __name__ == '__main__':
         for data in vested_share_data:
             print(data)
     else:
-        print (vested_share_data)
+        print(vested_share_data)
 
     # write to output.csv in tests folder
     # f = File()
