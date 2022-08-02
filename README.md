@@ -63,11 +63,21 @@ I have created 3 sub modules: helper, validator and default
 ## Assumptions
 List of some of the assumptions that I have made to solve the give problem.
 - Assumed that the total vested shares cannot be negative. Hence, if the toatal is negative, it is going to return 0.
-- Assumed that the employee_id is going to be true in the input csv i.e. employee_id is case sensitive.
-- Assumed that the award_id is going to be true in the input csv i.e. award_id is case sensitive.
+- Employee_id is case sensitive i.e. if the employee_id of same id but different case is found,
+the program is going to treat it differently.
+- Award_id is case sensitive i.e. if the award_id of same id but different case is found,
+the program is going to treat it differently.
     - Different cases (lowercase or uppercase) for employee_id and award_id means multiple input.
 - Name of the Employee encountered first is set and if the name is diffrent in different row, that is disregarded.
 - Assumed that the only valid date format is `YYYY-MM-DD`.
 
 
+## Future work
+In future we can modify the program to run it using parallel processing.
+We can process the csv file in multiple smaller chunks.
+For eg: We can process the file from top lenght_of_rows/2 in one process and bottom lenght_of_file/2 in a
+separate process. After processing the entire file, we can merge the `vested_shares` hash maps which would be
+created by these processes. Since the key (`award_id, employee_id` ) would be unique, we can just add the total award quantity of keys (`award_id, employee_id` ) form one dictionary into another.
+
+We can do the same parallel processing logic and have more than 2 processes as well.
 
